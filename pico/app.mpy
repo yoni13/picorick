@@ -1,0 +1,16 @@
+import network
+from machine import Pin
+import mrequests as mr
+def connect():
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    wlan.connect('SGGS',"awaAFakeWifi")
+    status=mr.get('http://ip').text
+    if status=='ok':
+        print('Connected to internet')
+    else:
+        print('Not connected to internet')
+        connect()
+connect()
+
+

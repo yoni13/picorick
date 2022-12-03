@@ -8,7 +8,10 @@ root = tk.Tk()
 root.wm_attributes("-topmost", 1)
 root.withdraw()
 app = Flask(__name__)
-
+app.debug = False
+@app.errorhandler(500)
+def pageNotFound(error):
+    return "erorr"
 @app.route('/')
 def index():
     return 'ok'

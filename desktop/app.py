@@ -1,5 +1,20 @@
 from flask import Flask
-import keyboard  # using module keyboard
+import os
+import psutil
+import time
+try:
+    import httplib
+except:
+    import http.client as httplib
+def ci(url="www.google.com", timeout=3):
+    conn = httplib.HTTPConnection(url, timeout=timeout)
+    try:
+        conn.request("HEAD", "/")
+        conn.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False
 import webbrowser
 import threading
 import tkinter as tk
@@ -39,8 +54,17 @@ def hello():
 def xuan():
     webbrowser.open('https://youtu.be/CqWZq1mJJh0?t=11')
     return 'ok'
+
+def alive():
+    if "powerpoint" in (p.name() for p in psutil.process_iter()) and ci() == False:
+        os.system('TASKKILL /IM powerpoint.exe /F')
+    time.sleep(3)
+
 if __name__ == '__main__':
     t = threading.Thread(target=app.run,args=('0.0.0.0',5000,))
-    t.setDaemon(True)
+    t.daemon=True
     t.start()
+    t2 = threading.Thread(target=alive,)
+    t2.daemon=True
+    t2.start()
     root.mainloop()

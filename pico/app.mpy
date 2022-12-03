@@ -1,16 +1,15 @@
 import network
 from machine import Pin
-import mrequests as mr
+from time import sleep
+import urequests as requests
+print('init success')
 def connect():
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.connect('SGGS',"awaAFakeWifi")
-    status=mr.get('http://ip').text
-    if status=='ok':
-        print('Connected to internet')
-    else:
-        print('Not connected to internet')
-        connect()
+    wlan.connect('yun10122',"yunben5254")
+    while wlan.isconnected() == False:
+        print('Waiting for connection...')
+        sleep(1)
 connect()
 
 

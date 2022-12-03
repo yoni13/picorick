@@ -19,8 +19,6 @@ while True:
         r26 = machine.ADC(26).read_u16()
         r27 = machine.ADC(27).read_u16()
         r28 = machine.ADC(28).read_u16()
-        if r26 == 0 and r27 == 0 and r28 == 0:
-            r26,r27,r28 = 99999,99999,99999
         # r < 200 = 1
         if r26 > 200 and r27 < 200 and r28 > 200:#rickroll is 0 1 0
             requests.get('http://192.168.1.107:5000/rickroll')
@@ -59,5 +57,5 @@ while True:
             sleep(5)
         print(str(r26) +' '+ str(r27) +' '+ str(r28))
         del r26,r27,r28
-        sleep(0.5)
+        sleep(1)
 

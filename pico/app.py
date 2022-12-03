@@ -16,6 +16,7 @@ def connect():
 connect()
 led.off()
 while True:
+        led.off()
         r26 = machine.ADC(26).read_u16()
         r27 = machine.ADC(27).read_u16()
         r28 = machine.ADC(28).read_u16()
@@ -57,5 +58,6 @@ while True:
             sleep(5)
         print(str(r26) +' '+ str(r27) +' '+ str(r28))
         del r26,r27,r28
-        sleep(1)
+        led.on()
+        sleep(1.5)
 

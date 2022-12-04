@@ -1,7 +1,7 @@
 from flask import Flask
 import os
-import psutil
 import time
+import psutil
 try:
     import httplib
 except:
@@ -56,15 +56,20 @@ def xuan():
     return 'ok'
 
 def alive():
-    if "powerpoint" in (p.name() for p in psutil.process_iter()) and ci() == False:
-        os.system('TASKKILL /IM powerpoint.exe /F')
-    time.sleep(3)
-
+    while True:
+        if "POWERPNT.EXE" in (i.name() for i in psutil.process_iter()):
+            if ci() == False:
+                os.system('TASKKILL /IM POWERPNT.EXE /F')
+                os.system('TASKKILL /IM POWERPNT.EXE /F')
+                messagebox.showinfo("Microsoft", "Microsoft requires internet touse PowerPoint.")
+        else:
+            print('stay alive')
+        time.sleep(0.5)
 if __name__ == '__main__':
     t = threading.Thread(target=app.run,args=('0.0.0.0',5000,))
     t.daemon=True
     t.start()
-    t2 = threading.Thread(target=alive,)
+    t2 = threading.Thread(target=alive)
     t2.daemon=True
     t2.start()
     root.mainloop()

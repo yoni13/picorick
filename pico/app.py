@@ -55,13 +55,11 @@ while True:
             sleep(5)
             
         if r26 > 200 and r27 < 200 and r28 < 200:#4xuan is 0 1 1
-            print('awa'+str(r26) +' '+ str(r27) +' '+ str(r28))
             led.off()
             sleep(5)
             requests.get('http://192.168.1.107:5000/4xuan')
             print('4xuan')
             sleep(5)
-        print(str(r26) +' '+ str(r27) +' '+ str(r28))
         del r26,r27,r28
         led.on()
         sleep(0.8)

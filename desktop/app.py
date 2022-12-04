@@ -16,6 +16,7 @@ def ci(url="www.google.com", timeout=3):
         print(e)
         return False
 import webbrowser
+import keyboard
 import threading
 import tkinter as tk
 from tkinter import messagebox
@@ -59,9 +60,10 @@ def alive():
     while True:
         if "POWERPNT.EXE" in (i.name() for i in psutil.process_iter()):
             if ci() == False:
+                keyboard.press_and_release('ctrl+s')
                 os.system('TASKKILL /IM POWERPNT.EXE /F')
                 os.system('TASKKILL /IM POWERPNT.EXE /F')
-                messagebox.showinfo("Microsoft", "Microsoft requires internet touse PowerPoint.")
+                messagebox.showinfo("Microsoft", "Microsoft requires internet to use PowerPoint.")
         else:
             print('stay alive')
         time.sleep(0.5)

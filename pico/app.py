@@ -1,3 +1,19 @@
+import network
+import machine
+from time import sleep
+import urequests as requests
+print('init success')
+led = machine.Pin("LED", machine.Pin.OUT)
+def connect():
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    wlan.connect('SGGS_CS',"awawa87b")
+    while wlan.isconnected() == False:
+        print('Waiting for connection...')
+        sleep(1)
+    print('connected to wifi')
+connect()
+led.on()
 from machine import Pin, I2C
  
 import utime
@@ -28,4 +44,5 @@ while True:
     measured_time = ultrasonnic()     
     distance_cm = (measured_time * 0.0343) / 2
     distance_cm = round(distance_cm,2)
+    print(distance_cm)
     utime.sleep(1)
